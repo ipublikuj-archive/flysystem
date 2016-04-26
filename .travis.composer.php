@@ -14,8 +14,6 @@ $composer  = json_decode($content, TRUE);
 
 $composer['require']['nette/di'] = $version;
 $composer['require']['nette/utils'] = $version;
-$composer['require']['nette/security'] = $version;
-$composer['require']['nette/http'] = $version;
 
 $content = json_encode($composer);
 file_put_contents($file, $content);
