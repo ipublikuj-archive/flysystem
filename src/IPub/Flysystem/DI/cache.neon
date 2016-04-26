@@ -1,0 +1,85 @@
+#
+# Flysystem cache factories
+#
+# @copyright	More in license.md
+# @license		http://www.ipublikuj.eu
+# @author		Adam Kadlec http://www.ipublikuj.eu
+# @package		iPublikuj:Flysystem!
+# @subpackage	DI
+# @since		1.0.0
+#
+# @date			19.04.16
+#
+
+memory:
+	class	: League\Flysystem\Cached\Storage\Memory
+	factory	: IPub\Flysystem\Factories\Cache\MemoryFactory::create
+	parameters:
+
+predis:
+	class	: League\Flysystem\Cached\Storage\Predis
+	factory	: IPub\Flysystem\Factories\Cache\PredisFactory::create
+	parameters:
+		client:
+			type		: service
+			required	: FALSE
+		key:
+			type		: string
+			required	: FALSE
+			default		: ipub.flysystem
+		expires:
+			type		: int
+			required	: FALSE
+			default		: NULL
+
+memcached:
+	class	: League\Flysystem\Cached\Storage\Memcached
+	factory	: IPub\Flysystem\Factories\Cache\MemcachedFactory::create
+	parameters:
+		client:
+			type		: service
+			required	: TRUE
+		key:
+			type		: string
+			required	: FALSE
+			default		: ipub.flysystem
+		expires:
+			type		: int
+			required	: FALSE
+			default		: NULL
+
+adapter:
+	class	: League\Flysystem\Cached\Storage\Adapter
+	factory	: IPub\Flysystem\Factories\Cache\AdapterFactory::create
+	parameters:
+		adapter:
+			type		: service
+			required	: TRUE
+		file:
+			type		: string
+			required	: TRUE
+		expires:
+			type		: int
+			required	: FALSE
+			default		: NULL
+
+stash:
+	class	: League\Flysystem\Cached\Storage\Stash
+	factory	: IPub\Flysystem\Factories\Cache\StashFactory::create
+	parameters:
+		pool:
+			type		: service
+			required	: TRUE
+		key:
+			type		: string
+			required	: FALSE
+			default		: ipub.flysystem
+		expires:
+			type		: int
+			required	: FALSE
+			default		: NULL
+
+noop:
+	class	: League\Flysystem\Cached\Storage\Noop
+	factory	: IPub\Flysystem\Factories\Cache\NoopFactory::create
+	parameters:

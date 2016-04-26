@@ -1,0 +1,72 @@
+{
+	"name"			: "ipub/flysystem",
+	"type"			: "library",
+	"description"	: " Flysystem integration for Nette Framework.",
+	"keywords"		: ["nette", "flysystem", "filesystem", "tools", "ipub", "ipublikuj"],
+	"homepage"		: "https://github.com/iPublikuj/flysystem",
+	"license"		: ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+
+	"authors": [
+		{
+			"name"		: "iPublikuj:cms",
+			"email"		: "info@ipublikuj.eu",
+			"homepage"	: "http://www.ipublikuj.eu/"
+		}
+	],
+
+	"support": {
+		"email"		:"support@ipublikuj.eu",
+		"issues"	:"https://github.com/iPublikuj/flysystem/issues"
+	},
+
+	"require": {
+		"php"	: ">=5.4.0",
+
+		"nette/di"		: "~2.2",
+		"nette/utils"	: "~2.2",
+
+		"league/flysystem"	: "~1.0"
+	},
+
+	"require-dev": {
+		"nette/bootstrap"		: "~2.2",
+		"nette/mail"			: "~2.2",
+		"nette/safe-stream"		: "~2.2",
+		"nette/robot-loader"	: "~2.2",
+		"nette/tester"			: "@dev",
+
+		"tracy/tracy"	: "@dev",
+
+		"league/flysystem-cached-adapter"	: "~1.0",
+		"league/flysystem-aws-s3-v3"		: "~1.0",
+		"league/flysystem-azure"			: "~1.0",
+		"league/flysystem-copy"				: "~1.0",
+		"league/flysystem-dropbox"			: "~1.0",
+		"league/flysystem-gridfs"			: "~1.0",
+		"league/flysystem-rackspace"		: "~1.0",
+		"league/flysystem-sftp"				: "~1.0",
+		"league/flysystem-webdav"			: "~1.0",
+		"league/flysystem-ziparchive"		: "~1.0"
+	},
+
+	"suggest": {
+		"ext-fileinfo"	: "Required for MimeType",
+
+		"league/flysystem-cached-adapter"	: "Flysystem adapter decorator for metadata caching",
+		"league/flysystem-aws-s3-v3"		: "Allows you to use Amazon S3 storage with AWS SDK v3",
+		"league/flysystem-azure"			: "Allows you to use Microsoft Azure storage",
+		"league/flysystem-copy"				: "Allows you to use Copy.com storage",
+		"league/flysystem-dropbox"			: "Allows you to use Dropbox storage",
+		"league/flysystem-gridfs"			: "Allows you to use GridFS adapter",
+		"league/flysystem-rackspace"		: "Allows you to use Rackspace Cloud Files",
+		"league/flysystem-sftp"				: "Allows SFTP server storage via phpseclib",
+		"league/flysystem-webdav"			: "Allows you to use WebDAV storage",
+		"league/flysystem-ziparchive"		: "Allows you to use ZipArchive adapter"
+	},
+
+	"autoload": {
+		"psr-0": {
+			"IPub\\Flysysten\\": "src/"
+		}
+	}
+}

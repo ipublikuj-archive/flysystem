@@ -1,0 +1,302 @@
+#
+# Flysystem adapters factories
+#
+# @copyright	More in license.md
+# @license		http://www.ipublikuj.eu
+# @author		Adam Kadlec http://www.ipublikuj.eu
+# @package		iPublikuj:Flysystem!
+# @subpackage	DI
+# @since		1.0.0
+#
+# @date			12.04.16
+#
+
+local:
+	class	: League\Flysystem\Adapter\Local
+	factory	: IPub\Flysystem\Factories\Adapters\LocalFactory::create
+	parameters:
+		directory:
+			type		: string
+			required	: TRUE
+		writeFlags:
+			type		: integer
+			required	: FALSE
+			default		: 2
+		linkHandling:
+			type		: string
+			required	: FALSE
+			default		: disallowLinks
+			values		: [skipLinks, disallowLinks]
+
+azure:
+	class	: League\Flysystem\Azure\AzureAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\AzureFactory::create
+	parameters:
+		account:
+			type		: string
+			required	: TRUE
+		apiKey:
+			type		: string
+			required	: TRUE
+		container:
+			type		: string
+			required	: TRUE
+
+awss3v2:
+	class	: League\Flysystem\AwsS3v2\AwsS3Adapter
+	factory	: IPub\Flysystem\Factories\Adapters\AwsS3v2Factory::create
+	parameters:
+		accessKey:
+			type		: string
+			required	: TRUE
+		accessSecret:
+			type		: string
+			required	: TRUE
+		region:
+			type		: string
+			required	: TRUE
+		version:
+			type		: string
+			required	: FALSE
+			default		: v2
+		bucket:
+			type		: string
+			required	: TRUE
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+awss3v3:
+	class	: League\Flysystem\AwsS3v3\AwsS3Adapter
+	factory	: IPub\Flysystem\Factories\Adapters\AwsS3v3Factory::create
+	parameters:
+		accessKey:
+			type		: string
+			required	: TRUE
+		accessSecret:
+			type		: string
+			required	: TRUE
+		region:
+			type		: string
+			required	: TRUE
+		version:
+			type		: string
+			required	: FALSE
+			default		: latest
+		bucket:
+			type		: string
+			required	: TRUE
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+copy:
+	class	: League\Flysystem\Copy\CopyAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\CopyFactory::create
+	parameters:
+		consumerKey:
+			type		: string
+			required	: TRUE
+		consumerSecret:
+			type		: string
+			required	: TRUE
+		accessToken:
+			type		: string
+			required	: TRUE
+		tokenSecret:
+			type		: string
+			required	: TRUE
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+dropbox:
+	class	: League\Flysystem\Dropbox\DropboxAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\DropboxFactory::create
+	parameters:
+		accessToken:
+			type		: string
+			required	: TRUE
+		clientIdentifier:
+			type		: string
+			required	: TRUE
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+ftp:
+	class	: League\Flysystem\Adapter\Ftp
+	factory	: IPub\Flysystem\Factories\Adapters\FtpFactory::create
+	parameters:
+		host:
+			type		: string
+			required	: TRUE
+		username:
+			type		: string
+			required	: TRUE
+		password:
+			type		: string
+			required	: TRUE
+		port:
+			type		: integer
+			required	: FALSE
+			default		: 21
+		root:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		passive:
+			type		: bool
+			required	: FALSE
+			default		: TRUE
+		ssl:
+			type		: bool
+			required	: FALSE
+			default		: TRUE
+		timeout:
+			type		: integer
+			required	: FALSE
+			default		: 30
+
+gridfs:
+	class	: League\Flysystem\GridFS\GridFSAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\GridFSFactory::create
+	parameters:
+		dbName:
+			type		: string
+			required	: TRUE
+
+memory:
+	class	: League\Flysystem\Memory\MemoryAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\MemoryFactory::create
+	parameters:
+		dbName:
+			type		: string
+			required	: TRUE
+
+null:
+	class	: League\Flysystem\Adapter\NullAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\NullFactory::create
+	parameters:
+
+rackspace:
+	class	: League\Flysystem\Rackspace\RackspaceAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\RackspaceFactory::create
+	parameters:
+		endpoint:
+			type		: string
+			required	: TRUE
+			values		: [US, UK]
+		username:
+			type		: string
+			required	: TRUE
+		password:
+			type		: string
+			required	: TRUE
+		serviceName:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		region:
+			type		: string
+			required	: FALSE
+			default		: NULL
+			values		: [DFW, IAD, ORD, LON, SYD]
+		urlType:
+			type		: string
+			required	: FALSE
+			default		: NULL
+			values		: [public, internal]
+		container:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+sftp:
+	class	: League\Flysystem\Sftp\SftpAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\SftpFactory::create
+	parameters:
+		host:
+			type		: string
+			required	: TRUE
+		username:
+			type		: string
+			required	: TRUE
+		password:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		privateKey:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		port:
+			type		: integer
+			required	: FALSE
+			default		: 22
+		root:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		timeout:
+			type		: integer
+			required	: FALSE
+			default		: 30
+
+webdav:
+	class	: League\Flysystem\WebDAV\WebDAVAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\WebDAVFactory::create
+	parameters:
+		baseUri:
+			type		: string
+			required	: TRUE
+		proxy:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		userName:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		password:
+			type		: string
+			required	: FALSE
+			default		: NULL
+		authType:
+			type		: string
+			required	: FALSE
+			default		: NULL
+			values		: [basic, digest]
+		encoding:
+			type		: string
+			required	: FALSE
+			default		: NULL
+			values		: [identity, deflate, gzip]
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
+
+zip:
+	class	: League\Flysystem\ZipArchive\ZipArchiveAdapter
+	factory	: IPub\Flysystem\Factories\Adapters\ZipArchiveFactory::create
+	parameters:
+		location:
+			type		: string
+			required	: TRUE
+		archive:
+			type		: object
+			required	: FALSE
+			default		: NULL
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
