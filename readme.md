@@ -6,7 +6,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/ipub/flysystem.svg?style=flat-square)](https://packagist.org/packages/ipub/flysystem)
 [![Composer Downloads](https://img.shields.io/packagist/dt/ipub/flysystem.svg?style=flat-square)](https://packagist.org/packages/ipub/flysystem)
 [![License](https://img.shields.io/packagist/l/ipub/flysystem.svg?style=flat-square)](https://packagist.org/packages/ipub/flysystem)
-[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/568ae065eb4f47003c00103e.svg?style=flat-square)](https://www.versioneye.com/user/projects/568ae065eb4f47003c00103e)
+[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/571fdb8dfcd19a0051856870.svg?style=flat-square)](https://www.versioneye.com/user/projects/571fdb8dfcd19a0051856870)
 
 This extension brings you [Flysystem](http://flysystem.thephpleague.com/) integration from [The PHP League](http://thephpleague.com/) for [Nette Framework](http://nette.org/)
 
