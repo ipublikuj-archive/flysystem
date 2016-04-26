@@ -1,0 +1,30 @@
+flysystem:
+	adapters:
+		localAdapter:
+			type: local
+			directory: %wwwDir%/first
+
+		secondLocalAdapter:
+			type: local
+			directory: %wwwDir%/second
+
+	cache:
+		memoryCache:
+			type: memory
+
+		adapterCache:
+			type: adapter
+			adapter: localAdapter
+			file: cached.file
+
+	filesystems:
+		localFileSystem:
+			adapter: localAdapter
+
+		memoryFileSystem:
+			adapter: localAdapter
+			cache: memoryCache
+
+		memoryAdapterFileSystem:
+			adapter: secondLocalAdapter
+			cache: adapterCache
