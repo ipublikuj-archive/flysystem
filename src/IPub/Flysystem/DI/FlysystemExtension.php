@@ -174,7 +174,7 @@ class FlysystemExtension extends DI\CompilerExtension
 			}
 
 			if (array_key_exists($name, $configuration)) {
-				//Utils\Validators::assert($configuration[$name], $definition['type'], $name);
+				Utils\Validators::assert($configuration[$name], $definition['type'], $name);
 
 				if (isset($definition['values']) && !in_array($configuration[$name], $definition['values'])) {
 					throw new Exceptions\InvalidParameterException(sprintf('The parameter "%s" for "%s" is not in allowed range [%s].', $name, $serviceName, implode(', ', $definition['values'])));

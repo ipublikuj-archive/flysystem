@@ -21,7 +21,7 @@ predis:
 	factory	: IPub\Flysystem\Factories\Cache\PredisFactory::create
 	parameters:
 		client:
-			type		: service
+			type		: string
 			required	: FALSE
 		key:
 			type		: string
@@ -37,7 +37,7 @@ memcached:
 	factory	: IPub\Flysystem\Factories\Cache\MemcachedFactory::create
 	parameters:
 		client:
-			type		: service
+			type		: string
 			required	: TRUE
 		key:
 			type		: string
@@ -53,7 +53,7 @@ adapter:
 	factory	: IPub\Flysystem\Factories\Cache\AdapterFactory::create
 	parameters:
 		adapter:
-			type		: service
+			type		: string
 			required	: TRUE
 		file:
 			type		: string
@@ -68,7 +68,7 @@ stash:
 	factory	: IPub\Flysystem\Factories\Cache\StashFactory::create
 	parameters:
 		pool:
-			type		: service
+			type		: string
 			required	: TRUE
 		key:
 			type		: string
