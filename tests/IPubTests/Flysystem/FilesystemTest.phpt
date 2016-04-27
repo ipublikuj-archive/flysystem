@@ -58,6 +58,15 @@ class FilesystemTest extends Tester\TestCase
 	public function testLoadFilesystems()
 	{
 		Assert::true($this->mountManager->getFilesystem('localFileSystem') instanceof League\Flysystem\FilesystemInterface);
+		Assert::true($this->mountManager->getFilesystem('localFileSystem') instanceof League\Flysystem\Adapter\Local);
+	}
+
+	public function testLocalFilesystem()
+	{
+		Assert::true($this->mountManager->write('localFileSystem://this/is/test.txt', 'Testing text'));
+		Assert::same($this->mountManager->read('localFileSystem://this/is/test.txt'), 'Testing text');
+		Assert::true($this->mountManager->delete('localFileSystem://this'));
+		Assert::false($this->mountManager->read('localFileSystem://this/is/test.txt'));
 	}
 
 	/**
