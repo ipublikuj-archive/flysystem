@@ -35,20 +35,9 @@ class WebDAVFactory
 	const AUTH_TYPE_BASIC = 'basic';
 	const AUTH_TYPE_DIGEST = 'digest';
 
-	const AUTH_TYPES = [
-		self::AUTH_TYPE_BASIC  => DAV\Client::AUTH_BASIC,
-		self::AUTH_TYPE_DIGEST => DAV\Client::AUTH_DIGEST,
-	];
-
 	const ENCODING_IDENTITY = 'identity';
 	const ENCODING_DEFLATE = 'deflate';
 	const ENCODING_GZIP = 'gzip';
-
-	const ENCODINGS = [
-		self::ENCODING_IDENTITY => DAV\Client::ENCODING_IDENTITY,
-		self::ENCODING_DEFLATE  => DAV\Client::ENCODING_DEFLATE,
-		self::ENCODING_GZIP     => DAV\Client::ENCODING_GZIP,
-	];
 
 	/**
 	 * @param Utils\ArrayHash $parameters
@@ -62,10 +51,33 @@ class WebDAVFactory
 			'proxy'    => $parameters->proxy,
 			'userName' => $parameters->username,
 			'password' => $parameters->password,
-			'authType' => $parameters->authType ? self::AUTH_TYPES[$parameters->authType] : NULL,
-			'encoding' => $parameters->encoding ? self::ENCODINGS[$parameters->encoding] : NULL,
+			'authType' => $parameters->authType ? self::getAutTypes()[$parameters->authType] : NULL,
+			'encoding' => $parameters->encoding ? self::getEncodings()[$parameters->encoding] : NULL,
 		]);
 
 		return new WebDAV\WebDAVAdapter($client, $parameters->prefix);
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function getAutTypes()
+	{
+		return [
+			self::AUTH_TYPE_BASIC  => DAV\Client::AUTH_BASIC,
+			self::AUTH_TYPE_DIGEST => DAV\Client::AUTH_DIGEST,
+		];
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function getEncodings()
+	{
+		return [
+			self::ENCODING_IDENTITY => DAV\Client::ENCODING_IDENTITY,
+			self::ENCODING_DEFLATE  => DAV\Client::ENCODING_DEFLATE,
+			self::ENCODING_GZIP     => DAV\Client::ENCODING_GZIP,
+		];
 	}
 }

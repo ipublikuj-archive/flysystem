@@ -33,11 +33,6 @@ class LocalFactory
 	const SKIP_LINKS = 'skipLinks';
 	const DISALLOW_LINKS = 'disallowLinks';
 
-	const LINKS = [
-		self::SKIP_LINKS     => Adapter\Local::SKIP_LINKS,
-		self::DISALLOW_LINKS => Adapter\Local::DISALLOW_LINKS,
-	];
-
 	/**
 	 * @param Utils\ArrayHash $parameters
 	 *
@@ -48,7 +43,18 @@ class LocalFactory
 		return new Adapter\Local(
 			$parameters->directory,
 			$parameters->writeFlags,
-			self::LINKS[$parameters->linkHandling]
+			self::getLinks()[$parameters->linkHandling]
 		);
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function getLinks()
+	{
+		return [
+			self::SKIP_LINKS     => Adapter\Local::SKIP_LINKS,
+			self::DISALLOW_LINKS => Adapter\Local::DISALLOW_LINKS,
+		];
 	}
 }
