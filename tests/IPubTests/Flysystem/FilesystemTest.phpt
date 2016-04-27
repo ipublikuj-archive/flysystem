@@ -58,7 +58,6 @@ class FilesystemTest extends Tester\TestCase
 	public function testLoadFilesystems()
 	{
 		Assert::true($this->mountManager->getFilesystem('localFileSystem') instanceof League\Flysystem\FilesystemInterface);
-		Assert::true($this->mountManager->getFilesystem('localFileSystem') instanceof League\Flysystem\Adapter\Local);
 	}
 
 	public function testLocalFilesystem()
@@ -66,9 +65,9 @@ class FilesystemTest extends Tester\TestCase
 		Assert::true($this->mountManager->write('localFileSystem://this/is/test.txt', 'Testing text'));
 		Assert::same($this->mountManager->read('localFileSystem://this/is/test.txt'), 'Testing text');
 		Assert::true($this->mountManager->delete('localFileSystem://this/is/test.txt'));
-		Assert::exception($this->mountManager->read('localFileSystem://this/is/test.txt'), 'League\Flysystem\FileNotFoundException', 'File not found at path: this/is/test.txt');
+		Assert::exception($this->mountManager->read('localFileSystem://this/is/test.txt'), 'League\Flysystem\FileNotFoundException');
 		Assert::true($this->mountManager->deleteDir('localFileSystem://this'));
-		Assert::exception($this->mountManager->read('localFileSystem://this/is/test.txt'), 'League\Flysystem\FileNotFoundException', 'File not found at path: this/is/test.txt');
+		Assert::exception($this->mountManager->read('localFileSystem://this/is/test.txt'), 'League\Flysystem\FileNotFoundException');
 	}
 
 	/**
