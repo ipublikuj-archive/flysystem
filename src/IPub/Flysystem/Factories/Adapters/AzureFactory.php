@@ -15,12 +15,13 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
 use League\Flysystem\Azure;
 
-use WindowsAzure\Common\ServicesBuilder;
+use WindowsAzure\Blob\Internal\IBlob;
 
 /**
  * Azure adapter filesystem factory
@@ -34,22 +35,19 @@ class AzureFactory
 {
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return Azure\AzureAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		$endpoint = sprintf(
-			'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
-			$parameters->account,
-			$parameters->apiKey
-		);
-
-		$blobRestProxy = ServicesBuilder::getInstance()->createBlobService($endpoint);
+		/** @var IBlob $client */
+		$client = $container->getService($parameters->client);
 
 		return new Azure\AzureAdapter(
-			$blobRestProxy,
-			$parameters->container
+			$client,
+			$parameters->container,
+			$parameters->prefix
 		);
 	}
 }

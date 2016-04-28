@@ -32,33 +32,24 @@ azure:
 	class	: League\Flysystem\Azure\AzureAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\AzureFactory::create
 	parameters:
-		account:
-			type		: string
-			required	: TRUE
-		apiKey:
+		client:
 			type		: string
 			required	: TRUE
 		container:
 			type		: string
 			required	: TRUE
+		prefix:
+			type		: string
+			required	: FALSE
+			default		: NULL
 
 awss3v2:
 	class	: League\Flysystem\AwsS3v2\AwsS3Adapter
 	factory	: IPub\Flysystem\Factories\Adapters\AwsS3v2Factory::create
 	parameters:
-		accessKey:
+		client:
 			type		: string
 			required	: TRUE
-		accessSecret:
-			type		: string
-			required	: TRUE
-		region:
-			type		: string
-			required	: TRUE
-		version:
-			type		: string
-			required	: FALSE
-			default		: v2
 		bucket:
 			type		: string
 			required	: TRUE
@@ -71,19 +62,9 @@ awss3v3:
 	class	: League\Flysystem\AwsS3v3\AwsS3Adapter
 	factory	: IPub\Flysystem\Factories\Adapters\AwsS3v3Factory::create
 	parameters:
-		accessKey:
+		client:
 			type		: string
 			required	: TRUE
-		accessSecret:
-			type		: string
-			required	: TRUE
-		region:
-			type		: string
-			required	: TRUE
-		version:
-			type		: string
-			required	: FALSE
-			default		: latest
 		bucket:
 			type		: string
 			required	: TRUE
@@ -96,16 +77,7 @@ copy:
 	class	: League\Flysystem\Copy\CopyAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\CopyFactory::create
 	parameters:
-		consumerKey:
-			type		: string
-			required	: TRUE
-		consumerSecret:
-			type		: string
-			required	: TRUE
-		accessToken:
-			type		: string
-			required	: TRUE
-		tokenSecret:
+		client:
 			type		: string
 			required	: TRUE
 		prefix:
@@ -117,10 +89,7 @@ dropbox:
 	class	: League\Flysystem\Dropbox\DropboxAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\DropboxFactory::create
 	parameters:
-		accessToken:
-			type		: string
-			required	: TRUE
-		clientIdentifier:
+		client:
 			type		: string
 			required	: TRUE
 		prefix:
@@ -166,7 +135,7 @@ gridfs:
 	class	: League\Flysystem\GridFS\GridFSAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\GridFSFactory::create
 	parameters:
-		dbName:
+		client:
 			type		: string
 			required	: TRUE
 
@@ -174,9 +143,6 @@ memory:
 	class	: League\Flysystem\Memory\MemoryAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\MemoryFactory::create
 	parameters:
-		dbName:
-			type		: string
-			required	: TRUE
 
 null:
 	class	: League\Flysystem\Adapter\NullAdapter
@@ -187,34 +153,9 @@ rackspace:
 	class	: League\Flysystem\Rackspace\RackspaceAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\RackspaceFactory::create
 	parameters:
-		endpoint:
+		client:
 			type		: string
 			required	: TRUE
-			values		: [US, UK]
-		username:
-			type		: string
-			required	: TRUE
-		password:
-			type		: string
-			required	: TRUE
-		serviceName:
-			type		: string
-			required	: FALSE
-			default		: NULL
-		region:
-			type		: string
-			required	: FALSE
-			default		: NULL
-			values		: [DFW, IAD, ORD, LON, SYD]
-		urlType:
-			type		: string
-			required	: FALSE
-			default		: NULL
-			values		: [public, internal]
-		container:
-			type		: string
-			required	: FALSE
-			default		: NULL
 		prefix:
 			type		: string
 			required	: FALSE
@@ -255,31 +196,9 @@ webdav:
 	class	: League\Flysystem\WebDAV\WebDAVAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\WebDAVFactory::create
 	parameters:
-		baseUri:
+		client:
 			type		: string
 			required	: TRUE
-		proxy:
-			type		: string
-			required	: FALSE
-			default		: NULL
-		userName:
-			type		: string
-			required	: FALSE
-			default		: NULL
-		password:
-			type		: string
-			required	: FALSE
-			default		: NULL
-		authType:
-			type		: string
-			required	: FALSE
-			default		: NULL
-			values		: [basic, digest]
-		encoding:
-			type		: string
-			required	: FALSE
-			default		: NULL
-			values		: [identity, deflate, gzip]
 		prefix:
 			type		: string
 			required	: FALSE

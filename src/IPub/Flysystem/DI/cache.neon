@@ -30,7 +30,7 @@ predis:
 		expires:
 			type		: int
 			required	: FALSE
-			default		: NULL
+			default		: 300
 
 memcached:
 	class	: League\Flysystem\Cached\Storage\Memcached
@@ -46,7 +46,7 @@ memcached:
 		expires:
 			type		: int
 			required	: FALSE
-			default		: NULL
+			default		: 300
 
 adapter:
 	class	: League\Flysystem\Cached\Storage\Adapter
@@ -61,7 +61,7 @@ adapter:
 		expires:
 			type		: int
 			required	: FALSE
-			default		: NULL
+			default		: 300
 
 stash:
 	class	: League\Flysystem\Cached\Storage\Stash
@@ -77,7 +77,7 @@ stash:
 		expires:
 			type		: int
 			required	: FALSE
-			default		: NULL
+			default		: 300
 
 noop:
 	class	: League\Flysystem\Cached\Storage\Noop

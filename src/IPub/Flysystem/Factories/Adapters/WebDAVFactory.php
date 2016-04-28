@@ -15,6 +15,7 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
@@ -32,52 +33,17 @@ use Sabre\DAV;
  */
 class WebDAVFactory
 {
-	const AUTH_TYPE_BASIC = 'basic';
-	const AUTH_TYPE_DIGEST = 'digest';
-
-	const ENCODING_IDENTITY = 'identity';
-	const ENCODING_DEFLATE = 'deflate';
-	const ENCODING_GZIP = 'gzip';
-
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return WebDAV\WebDAVAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		$client = new DAV\Client([
-			'baseUri'  => $parameters->baseUri,
-			'proxy'    => $parameters->proxy,
-			'userName' => $parameters->username,
-			'password' => $parameters->password,
-			'authType' => $parameters->authType ? self::getAutTypes()[$parameters->authType] : NULL,
-			'encoding' => $parameters->encoding ? self::getEncodings()[$parameters->encoding] : NULL,
-		]);
+		/** @var DAV\Client $client */
+		$client = $container->getService($parameters->client);
 
 		return new WebDAV\WebDAVAdapter($client, $parameters->prefix);
-	}
-
-	/**
-	 * @return array
-	 */
-	private static function getAutTypes()
-	{
-		return [
-			self::AUTH_TYPE_BASIC  => DAV\Client::AUTH_BASIC,
-			self::AUTH_TYPE_DIGEST => DAV\Client::AUTH_DIGEST,
-		];
-	}
-
-	/**
-	 * @return array
-	 */
-	private static function getEncodings()
-	{
-		return [
-			self::ENCODING_IDENTITY => DAV\Client::ENCODING_IDENTITY,
-			self::ENCODING_DEFLATE  => DAV\Client::ENCODING_DEFLATE,
-			self::ENCODING_GZIP     => DAV\Client::ENCODING_GZIP,
-		];
 	}
 }

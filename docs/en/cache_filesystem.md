@@ -36,7 +36,7 @@ flysystem:
             type: memory
 ```
 
-### Memcached
+## Memcached
 
 ```neon
 services:
@@ -54,7 +54,7 @@ flysystem:
             expires: 123        # defaults to "300"
 ```
 
-### Redis (through Predis)
+## Redis (through Predis)
 
 The Redis cache implementation works with the Predis library. You can find more in-depth configuration options in the [corresponding documentation](https://github.com/nrk/predis#client-configuration).
 
@@ -72,7 +72,7 @@ flysystem:
             expires: 123        # defaults to "300"
 ```
 
-### [Stash](https://github.com/tedious/Stash)
+## [Stash](https://github.com/tedious/Stash)
 
 > Stash makes it easy to speed up your code by caching the results of expensive functions or code. Certain actions, like database queries or calls to external APIs, take a lot of time to run but tend to have the same results over short periods of time. This makes it much more efficient to store the results and call them back up later.
 
@@ -92,7 +92,7 @@ flysystem:
             expires: 123        # defaults to "300"
 ```
 
-### Noop
+## Noop
 
 This strategy prevents any kind of caching, even in the current request. Use with caution!
 

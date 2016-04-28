@@ -15,6 +15,7 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
@@ -34,21 +35,14 @@ class AwsS3v3Factory
 {
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return AwsS3v3\AwsS3Adapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		$client = new S3Client(
-			[
-				'credentials' => [
-					'key'    => $parameters->accessKey,
-					'secret' => $parameters->accessSecret,
-				],
-				'region'      => $parameters->region,
-				'version'     => $parameters->version,
-			]
-		);
+		/** @var S3Client $client */
+		$client = $container->getService($parameters->client);
 
 		return new AwsS3v3\AwsS3Adapter(
 			$client,

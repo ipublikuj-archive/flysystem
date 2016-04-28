@@ -15,6 +15,7 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
@@ -34,13 +35,14 @@ class CopyFactory
 {
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return Copy\CopyAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		// Crate copy.com client
-		$client = new API($parameters->consumerKey, $parameters->consumerSecret, $parameters->accessToken, $parameters->tokenSecret);
+		/** @var API $client */
+		$client = $container->getService($parameters->client);
 
 		return new Copy\CopyAdapter(
 			$client,

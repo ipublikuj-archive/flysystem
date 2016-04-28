@@ -15,6 +15,7 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
@@ -34,13 +35,14 @@ class DropboxFactory
 {
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return Dropbox\DropboxAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		// Crate dropbox client
-		$client = new Client($parameters->accessToken, $parameters->clientIdentifier);
+		/** @var Client $client */
+		$client = $container->getService($parameters->client);
 
 		return new Dropbox\DropboxAdapter(
 			$client,

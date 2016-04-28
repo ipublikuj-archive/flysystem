@@ -15,6 +15,7 @@
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette;
+use Nette\DI;
 use Nette\Utils;
 
 use League\Flysystem;
@@ -32,15 +33,15 @@ class GridFSFactory
 {
 	/**
 	 * @param Utils\ArrayHash $parameters
+	 * @param DI\Container $container
 	 *
 	 * @return GridFS\GridFSAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
 	{
-		$mongoClient = new \MongoClient;
+		/** @var \MongoGridFS $client */
+		$client = $container->getService($parameters->client);
 
-		$gridFs = $mongoClient->selectDB($parameters->dbName)->getGridFS();
-
-		return new GridFS\GridFSAdapter($gridFs);
+		return new GridFS\GridFSAdapter($client);
 	}
 }
