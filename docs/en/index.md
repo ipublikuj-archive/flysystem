@@ -36,7 +36,7 @@ flysystem:
 
 ### There are a bunch of adapters for you to use:
 
-* AwsS3
+* [AwsS3](adapter_awss3.md)
 * Dropbox
 * Ftp
 * Local filesystem
