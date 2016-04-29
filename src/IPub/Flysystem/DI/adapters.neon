@@ -106,10 +106,10 @@ ftp:
 			required	: TRUE
 		username:
 			type		: string
-			required	: TRUE
+			required	: FALSE
 		password:
 			type		: string
-			required	: TRUE
+			required	: FALSE
 		port:
 			type		: integer
 			required	: FALSE
