@@ -191,6 +191,14 @@ sftp:
 			type		: integer
 			required	: FALSE
 			default		: 30
+		permPublic:
+			type		: string
+			required	: FALSE
+			default		: 0000
+		permPrivate:
+			type		: string
+			required	: FALSE
+			default		: 0744
 
 webdav:
 	class	: League\Flysystem\WebDAV\WebDAVAdapter

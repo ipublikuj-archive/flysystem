@@ -40,13 +40,12 @@ flysystem:
 * [Dropbox](adapter_dropbox.md)
 * [Ftp] (adapter_ftp.md)
 * [Local filesystem](adapter_local.md)
-* NullAdapter
-* Rackspace
-* Sftp
-* WebDav
-* ZipArchive
-* GridFS
-* Copy.com
+* [Null/Test](adapter_null.md)
+* [Rackspace](adapter_rackspace.md)
+* [SFtp](adapter_sftp.md)
+* [WebDav](adapter_webdav.md)   
+* [ZipArchive](adapter_ziparchive.md)
+* [GridFS](adapter_gridfs.md)
 
 ## Create and use your filesystems
 
