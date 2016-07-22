@@ -86,14 +86,14 @@ All filesystems are automatically mounted to the mount manager service for easy 
 class FileUploadPresenter extends BasePresenter
 {
     /**
-     * @var League\Flysystem\MountManager
+     * @var \League\Flysystem\MountManager
      */
     private $mountManager;
 
     /**
-     * @param League\Flysystem\MountManager $mountManager
+     * @param \League\Flysystem\MountManager $mountManager
      */
-    public function __construct(League\Flysystem\MountManager $mountManager)
+    public function __construct(\League\Flysystem\MountManager $mountManager)
     {
         $this->mountManager = $mountManager;
     }
