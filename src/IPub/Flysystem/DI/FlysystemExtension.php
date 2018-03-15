@@ -116,7 +116,7 @@ class FlysystemExtension extends DI\CompilerExtension
 				]);
 
 			} else {
-				throw new Exceptions\InvalidAdapterException(sprintf('The service "%s" is not defined in Flystystem configuration.', $serviceName));
+				throw new Exceptions\InvalidAdapterException(sprintf('The service "%s" is not defined in Flysystem configuration.', $serviceName));
 			}
 		}
 	}

@@ -30,8 +30,10 @@ use IPub\Flysystem\Exceptions;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class NeonFileLoader extends Nette\Object
+class NeonFileLoader
 {
+    use Nette\SmartObject;
+
 	/**
 	 * @param $resource
 	 *

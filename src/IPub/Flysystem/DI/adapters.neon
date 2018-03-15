@@ -73,18 +73,6 @@ awss3v3:
 			required	: FALSE
 			default		: NULL
 
-copy:
-	class	: League\Flysystem\Copy\CopyAdapter
-	factory	: IPub\Flysystem\Factories\Adapters\CopyFactory::create
-	parameters:
-		client:
-			type		: string
-			required	: TRUE
-		prefix:
-			type		: string
-			required	: FALSE
-			default		: NULL
-
 dropbox:
 	class	: League\Flysystem\Dropbox\DropboxAdapter
 	factory	: IPub\Flysystem\Factories\Adapters\DropboxFactory::create

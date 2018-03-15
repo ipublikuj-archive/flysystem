@@ -1,3 +1,7 @@
 composer.lock
 vendor
 tests/temp
+
+#IDE
+.idea
+nbproject
