@@ -22,18 +22,18 @@
 	"require": {
 		"php"	: ">=7.0.0",
 
-		"nette/di"		: ">=2.2",
+		"nette/di"		: ">=2.3",
 		"nette/utils"	: ">=2.5",
 
 		"league/flysystem"	: "~1.0"
 	},
 
 	"require-dev": {
-		"nette/application"		: "~2.2",
-		"nette/bootstrap"		: "~2.2",
-		"nette/mail"			: "~2.2",
-		"nette/safe-stream"		: "~2.2",
-		"nette/robot-loader"	: "~2.2",
+		"nette/application"		: ">=2.3",
+		"nette/bootstrap"		: ">=2.3",
+		"nette/mail"			: ">=2.3",
+		"nette/safe-stream"		: ">=2.3",
+		"nette/robot-loader"	: ">=2.3",
 		"nette/tester"			: "@dev",
 
 		"tracy/tracy"	: "@dev",
