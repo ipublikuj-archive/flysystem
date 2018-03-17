@@ -12,12 +12,12 @@
  * @date           12.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Adapter;
 
 /**
@@ -26,19 +26,19 @@ use League\Flysystem\Adapter;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class LocalFactory
 {
-	const SKIP_LINKS = 'skipLinks';
-	const DISALLOW_LINKS = 'disallowLinks';
+	private const SKIP_LINKS = 'skipLinks';
+	private const DISALLOW_LINKS = 'disallowLinks';
 
 	/**
 	 * @param Utils\ArrayHash $parameters
 	 *
 	 * @return Adapter\Local
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters) : Adapter\Local
 	{
 		return new Adapter\Local(
 			$parameters->directory,
@@ -50,7 +50,7 @@ class LocalFactory
 	/**
 	 * @return array
 	 */
-	private static function getLinks()
+	private static function getLinks() : array
 	{
 		return [
 			self::SKIP_LINKS     => Adapter\Local::SKIP_LINKS,

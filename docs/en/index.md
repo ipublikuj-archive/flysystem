@@ -38,7 +38,7 @@ flysystem:
 
 * [AwsS3](adapter_awss3.md)
 * [Dropbox](adapter_dropbox.md)
-* [Ftp] (adapter_ftp.md)
+* [Ftp](adapter_ftp.md)
 * [Local filesystem](adapter_local.md)
 * [Null/Test](adapter_null.md)
 * [Rackspace](adapter_rackspace.md)

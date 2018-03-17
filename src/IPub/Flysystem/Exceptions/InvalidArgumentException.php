@@ -12,6 +12,8 @@
  * @date           26.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Exceptions;
 
 class InvalidArgumentException extends \InvalidArgumentException implements IException

@@ -12,6 +12,8 @@
  * @date           12.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Exceptions;
 
 class InvalidResourceException extends \InvalidArgumentException implements IException

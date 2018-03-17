@@ -12,12 +12,12 @@
  * @date           23.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Sftp;
 
 /**
@@ -26,7 +26,7 @@ use League\Flysystem\Sftp;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class SftpFactory
 {
@@ -35,7 +35,7 @@ class SftpFactory
 	 *
 	 * @return Sftp\SftpAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters) : Sftp\SftpAdapter
 	{
 		return new Sftp\SftpAdapter([
 			'host'       => $parameters->host,

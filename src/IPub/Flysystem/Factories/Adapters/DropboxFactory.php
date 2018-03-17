@@ -12,13 +12,13 @@
  * @date           19.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\DI;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Dropbox;
 
 use Dropbox\Client;
@@ -29,7 +29,7 @@ use Dropbox\Client;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class DropboxFactory
 {
@@ -39,7 +39,7 @@ class DropboxFactory
 	 *
 	 * @return Dropbox\DropboxAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container) : Dropbox\DropboxAdapter
 	{
 		/** @var Client $client */
 		$client = $container->getService($parameters->client);

@@ -12,6 +12,8 @@
  * @date           19.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Exceptions;
 
 class InvalidAdapterException extends \InvalidArgumentException implements IException

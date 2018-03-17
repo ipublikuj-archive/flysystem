@@ -12,14 +12,14 @@
  * @date           12.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Loaders;
 
 use Nette;
 use Nette\Neon;
 use Nette\Utils;
 
-use IPub;
-use IPub\Flysystem;
 use IPub\Flysystem\Exceptions;
 
 /**
@@ -28,18 +28,21 @@ use IPub\Flysystem\Exceptions;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Loaders
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class NeonFileLoader
 {
-    use Nette\SmartObject;
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
 
 	/**
 	 * @param $resource
 	 *
 	 * @return array
 	 */
-	public function load($resource)
+	public function load($resource) : array
 	{
 		if (!stream_is_local($resource)) {
 			throw new Exceptions\InvalidResourceException(sprintf('This is not a local file "%s".', $resource));

@@ -13,6 +13,8 @@
  * @date           26.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPubTests\Flysystem;
 
 use Nette;
@@ -20,7 +22,6 @@ use Nette;
 use Tester;
 use Tester\Assert;
 
-use IPub;
 use IPub\Flysystem;
 
 use League;
@@ -33,7 +34,7 @@ require __DIR__ . '/../bootstrap.php';
  * @package        iPublikuj:Flysystem!
  * @subpackage     Tests
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class FilesystemTest extends Tester\TestCase
 {
@@ -47,7 +48,7 @@ class FilesystemTest extends Tester\TestCase
 	 */
 	private $mountManager;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		parent::setUp();
 
@@ -55,12 +56,12 @@ class FilesystemTest extends Tester\TestCase
 		$this->mountManager = $this->container->getByType('League\Flysystem\MountManager');
 	}
 
-	public function testLoadFilesystems()
+	public function testLoadFilesystems() : void
 	{
 		Assert::true($this->mountManager->getFilesystem('localFileSystem') instanceof League\Flysystem\FilesystemInterface);
 	}
 
-	public function testLocalFilesystem()
+	public function testLocalFilesystem() : void
 	{
 		Assert::true($this->mountManager->write('localFileSystem://this/is/test.txt', 'Testing text'));
 		Assert::same($this->mountManager->read('localFileSystem://this/is/test.txt'), 'Testing text');
@@ -71,7 +72,7 @@ class FilesystemTest extends Tester\TestCase
 	/**
 	 * @throws League\Flysystem\FileNotFoundException
 	 */
-	public function testReadNotExistingFile()
+	public function testReadNotExistingFile() : void
 	{
 		$this->mountManager->read('localFileSystem://this/is/test.txt');
 	}
@@ -79,7 +80,7 @@ class FilesystemTest extends Tester\TestCase
 	/**
 	 * @return Nette\DI\Container
 	 */
-	protected function createContainer()
+	protected function createContainer() : Nette\DI\Container
 	{
 		$rootDir = __DIR__ . '/../../';
 

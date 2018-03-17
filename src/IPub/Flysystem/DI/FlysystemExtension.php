@@ -12,6 +12,8 @@
  * @date           05.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\DI;
 
 use Nette;
@@ -19,11 +21,8 @@ use Nette\DI;
 use Nette\Utils;
 use Nette\PhpGenerator as Code;
 
-use Tracy;
-
 use League\Flysystem;
 
-use IPub;
 use IPub\Flysystem\Exceptions;
 use IPub\Flysystem\Factories;
 use IPub\Flysystem\Loaders;
@@ -34,7 +33,7 @@ use IPub\Flysystem\Loaders;
  * @package        iPublikuj:Flysystem!
  * @subpackage     DI
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class FlysystemExtension extends DI\CompilerExtension
 {
@@ -47,9 +46,9 @@ class FlysystemExtension extends DI\CompilerExtension
 		'filesystems' => [],
 	];
 
-	public function loadConfiguration()
+	public function loadConfiguration() : void
 	{
-		// Get container builder
+		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
 		// Get extension configuration
 		$configuration = $this->getConfig($this->defaults);
@@ -61,13 +60,13 @@ class FlysystemExtension extends DI\CompilerExtension
 		$this->loadServices($configuration['cache'], 'cache');
 
 		$mountManager = $builder->addDefinition($this->prefix('mountmanager'))
-			->setClass(Flysystem\MountManager::class);
+			->setType(Flysystem\MountManager::class);
 
 		foreach ($configuration['filesystems'] as $name => $filesystem) {
 			// Check if filesystem is with cache
 			if (array_key_exists('cache', $filesystem)) {
 				// Create adapter name
-				$adapterName = 'cached_' . $filesystem['adapter'] .'_'. $filesystem['cache'] .'_'. uniqid();
+				$adapterName = 'cached_' . $filesystem['adapter'] . '_' . $filesystem['cache'] . '_' . uniqid();
 
 				// Create cached adapter
 				$this->registerService(
@@ -86,7 +85,7 @@ class FlysystemExtension extends DI\CompilerExtension
 			}
 
 			$builder->addDefinition($this->prefix('filesystem.' . $name))
-				->setClass(Flysystem\Filesystem::class)
+				->setType(Flysystem\Filesystem::class)
 				->setArguments(['adapter' => '@' . $this->prefix('adapters.' . $adapterName)])
 				->addTag('ipub.flysystem.filesystem');
 
@@ -97,8 +96,10 @@ class FlysystemExtension extends DI\CompilerExtension
 	/**
 	 * @param array $services
 	 * @param string $type
+	 *
+	 * @return void
 	 */
-	private function loadServices(array $services, $type)
+	private function loadServices(array $services, string $type) : void
 	{
 		// Get neon file adapter
 		$neonAdapter = new Loaders\NeonFileLoader;
@@ -127,19 +128,21 @@ class FlysystemExtension extends DI\CompilerExtension
 	 * @param string $class
 	 * @param string $factory
 	 * @param array $arguments
+	 *
+	 * @return void
 	 */
-	private function registerService($type, $name, $class, $factory, array $arguments = [])
+	private function registerService(string $type, string $name, string $class, string $factory, array $arguments = []) : void
 	{
 		// Check if service class exists
 		if (!class_exists($class)) {
 			throw new Exceptions\InvalidArgumentException(sprintf('Class "%s" for service "%s" of "%s" does not exists.', $class, $name, $type));
 		}
 
-		// Get container builder
+		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix($type . '.' . $name))
-			->setClass($class)
+			->setType($class)
 			->setFactory($factory)
 			->setArguments($arguments)
 			->addTag('ipub.flysystem.' . $type);
@@ -156,7 +159,7 @@ class FlysystemExtension extends DI\CompilerExtension
 	 * @throws Exceptions\InvalidAdapterException
 	 * @throws Utils\AssertionException
 	 */
-	private function validateParameters($parameters, $configuration, $serviceName)
+	private function validateParameters(array $parameters, array $configuration, string $serviceName) : Utils\ArrayHash
 	{
 		$collection = [];
 
@@ -192,8 +195,10 @@ class FlysystemExtension extends DI\CompilerExtension
 	/**
 	 * @param Nette\Configurator $config
 	 * @param string $extensionName
+	 *
+	 * @return void
 	 */
-	public static function register(Nette\Configurator $config, $extensionName = 'flysystem')
+	public static function register(Nette\Configurator $config, string $extensionName = 'flysystem') : void
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new FlysystemExtension);

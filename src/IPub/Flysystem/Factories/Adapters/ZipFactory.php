@@ -12,12 +12,12 @@
  * @date           23.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\ZipArchive;
 
 /**
@@ -26,7 +26,7 @@ use League\Flysystem\ZipArchive;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class ZipFactory
 {
@@ -35,7 +35,7 @@ class ZipFactory
 	 *
 	 * @return ZipArchive\ZipArchiveAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters)
+	public static function create(Utils\ArrayHash $parameters) : ZipArchive\ZipArchiveAdapter
 	{
 		return new ZipArchive\ZipArchiveAdapter($parameters->location, $parameters->archive, $parameters->prefix);
 	}

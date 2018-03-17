@@ -12,13 +12,13 @@
  * @date           23.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\DI;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Azure;
 
 use WindowsAzure\Blob\Internal\IBlob;
@@ -29,7 +29,7 @@ use WindowsAzure\Blob\Internal\IBlob;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class AzureFactory
 {
@@ -39,7 +39,7 @@ class AzureFactory
 	 *
 	 * @return Azure\AzureAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container) : Azure\AzureAdapter
 	{
 		/** @var IBlob $client */
 		$client = $container->getService($parameters->client);

@@ -12,13 +12,13 @@
  * @date           23.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Adapters;
 
-use Nette;
 use Nette\DI;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Rackspace;
 
 use OpenCloud;
@@ -29,7 +29,7 @@ use OpenCloud;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class RackspaceFactory
 {
@@ -39,7 +39,7 @@ class RackspaceFactory
 	 *
 	 * @return Rackspace\RackspaceAdapter
 	 */
-	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container) : Rackspace\RackspaceAdapter
 	{
 		/** @var OpenCloud\ObjectStore\Resource\Container $client */
 		$client = $container->getService($parameters->client);

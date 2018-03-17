@@ -12,13 +12,13 @@
  * @date           26.04.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\Flysystem\Factories\Cache;
 
-use Nette;
 use Nette\DI;
 use Nette\Utils;
 
-use League\Flysystem;
 use League\Flysystem\Cached;
 
 /**
@@ -27,7 +27,7 @@ use League\Flysystem\Cached;
  * @package        iPublikuj:Flysystem!
  * @subpackage     Cache
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class AdapterFactory
 {
@@ -37,7 +37,7 @@ class AdapterFactory
 	 *
 	 * @return Cached\Storage\Adapter
 	 */
-	public static function create(Utils\ArrayHash $parameters, DI\Container $container)
+	public static function create(Utils\ArrayHash $parameters, DI\Container $container) : Cached\Storage\Adapter
 	{
 		/** @var Flysystem\AdapterInterface $adapter */
 		$adapter = $container->getService($parameters->extensionPrefix . '.adapters.' . $parameters->adapter);
