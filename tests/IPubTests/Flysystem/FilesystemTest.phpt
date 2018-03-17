@@ -87,7 +87,7 @@ class FilesystemTest extends Tester\TestCase
 		$config = new Nette\Configurator();
 		$config->setTempDirectory(TEMP_DIR);
 
-		$config->addParameters(['container' => ['class' => 'SystemContainer_' . md5(time())]]);
+		$config->addParameters(['container' => ['class' => 'SystemContainer_' . md5((string) time())]]);
 		$config->addParameters(['appDir' => $rootDir, 'wwwDir' => $rootDir]);
 
 		$config->addConfig(__DIR__ . '/files/config.neon');
