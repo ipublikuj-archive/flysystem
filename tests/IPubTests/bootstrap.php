@@ -15,7 +15,7 @@ Tester\Environment::setup();
 date_default_timezone_set('Europe/Prague');
 
 // Create temporary directory
-define('TEMP_DIR', __DIR__ . '/../tmp/' . (isset($_SERVER['argv']) ? md5((string) (serialize($_SERVER['argv'])) : getmypid())));
+define('TEMP_DIR', __DIR__ . '/../tmp/' . (isset($_SERVER['argv']) ? md5(serialize($_SERVER['argv'])) : getmypid()));
 Tester\Helpers::purge(TEMP_DIR);
 \Tracy\Debugger::$logDirectory = TEMP_DIR;
 
