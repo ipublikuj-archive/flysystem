@@ -149,7 +149,7 @@ class FlysystemExtension extends DI\CompilerExtension
 	}
 
 	/**
-	 * @param array $parameters
+	 * @param array|NULL $parameters
 	 * @param array $configuration
 	 * @param string $serviceName
 	 *
@@ -159,7 +159,7 @@ class FlysystemExtension extends DI\CompilerExtension
 	 * @throws Exceptions\InvalidAdapterException
 	 * @throws Utils\AssertionException
 	 */
-	private function validateParameters(array $parameters, array $configuration, string $serviceName) : Utils\ArrayHash
+	private function validateParameters(?array $parameters, array $configuration, string $serviceName) : Utils\ArrayHash
 	{
 		$collection = [];
 
