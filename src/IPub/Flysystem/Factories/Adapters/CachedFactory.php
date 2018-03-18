@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        https://www.ipublikuj.eu
- * @author         Adam Kadlec https://www.ipublikuj.eu
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:Flysystem!
  * @subpackage     Adapters
  * @since          1.0.0
@@ -17,7 +17,6 @@ declare(strict_types = 1);
 namespace IPub\Flysystem\Factories\Adapters;
 
 use Nette\DI;
-use Nette\Utils;
 
 use League\Flysystem\Cached;
 
@@ -34,7 +33,7 @@ class CachedFactory
 	/**
 	 * @param string $adapterServiceName
 	 * @param string $cacheServiceName
-	 * @param Nette\DI\Container $container
+	 * @param DI\Container $container
 	 *
 	 * @return Cached\CachedAdapter
 	 */

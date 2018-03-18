@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        https://www.ipublikuj.eu
- * @author         Adam Kadlec https://www.ipublikuj.eu
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:Flysystem!
  * @subpackage     DI
  * @since          1.0.0
@@ -19,7 +19,6 @@ namespace IPub\Flysystem\DI;
 use Nette;
 use Nette\DI;
 use Nette\Utils;
-use Nette\PhpGenerator as Code;
 
 use League\Flysystem;
 
@@ -46,6 +45,11 @@ class FlysystemExtension extends DI\CompilerExtension
 		'filesystems' => [],
 	];
 
+	/**
+	 * @void
+	 *
+	 * @throws Utils\AssertionException
+	 */
 	public function loadConfiguration() : void
 	{
 		/** @var DI\ContainerBuilder $builder */
@@ -98,6 +102,8 @@ class FlysystemExtension extends DI\CompilerExtension
 	 * @param string $type
 	 *
 	 * @return void
+	 *
+	 * @throws Utils\AssertionException
 	 */
 	private function loadServices(array $services, string $type) : void
 	{
