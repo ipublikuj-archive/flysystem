@@ -23,7 +23,7 @@
 		"ipub"	: {
 			"configuration" : {
 				"extensions" : {
-					"confirmationDialog" : "IPub\\Flysystem\\DI\\FlysystemExtension"
+					"flysystem" : "IPub\\Flysystem\\DI\\FlysystemExtension"
 				}
 			}
 		}
