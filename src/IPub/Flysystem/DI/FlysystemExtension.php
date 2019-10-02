@@ -55,7 +55,7 @@ class FlysystemExtension extends DI\CompilerExtension
 		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
 		// Get extension configuration
-		$configuration = $this->getConfig($this->defaults);
+		$configuration = $this->validateConfig($this->defaults);
 
 		// Load all configured adapters
 		$this->loadServices($configuration['adapters'], 'adapters');
@@ -64,7 +64,8 @@ class FlysystemExtension extends DI\CompilerExtension
 		$this->loadServices($configuration['cache'], 'cache');
 
 		$mountManager = $builder->addDefinition($this->prefix('mountmanager'))
-			->setType(Flysystem\MountManager::class);
+			->setType(Flysystem\MountManager::class)
+			->setArguments([[]]);
 
 		foreach ($configuration['filesystems'] as $name => $filesystem) {
 			// Check if filesystem is with cache
