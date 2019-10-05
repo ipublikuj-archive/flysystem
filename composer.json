@@ -32,16 +32,16 @@
 	"require": {
 		"php"	: ">=7.1.0",
 
-		"nette/di"		: "~2.4",
-		"nette/utils"	: "~2.4",
+		"nette/di"		: "~2.4.10 || ~3.0",
+		"nette/utils"	: "~2.4.9 || ~3.0",
 
-		"league/flysystem"	: "~1.0"
+		"league/flysystem"	: "~1.0.52"
 	},
 
 	"require-dev": {
-		"nette/bootstrap"		: "~2.4",
-		"nette/mail"			: "~2.4",
-		"nette/robot-loader"	: "~2.4",
+		"nette/bootstrap"		: "~2.4 || ~3.0",
+		"nette/mail"			: "~2.4 || ~3.0",
+		"nette/robot-loader"	: "~2.4 || ~3.0",
 		"nette/safe-stream"		: "~2.3",
 		"nette/tester"			: "~2.0",
 
