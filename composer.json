@@ -32,10 +32,10 @@
 	"require": {
 		"php"	: ">=7.1.0",
 
-		"nette/di"		: "~2.4.10 || ~3.0",
-		"nette/utils"	: "~2.4.9 || ~3.0",
+		"nette/di"		: "^2.4.10 || ~3.0",
+		"nette/utils"	: "^2.4.9 || ~3.0",
 
-		"league/flysystem"	: "~1.0.52"
+		"league/flysystem"	: "^1.0.52"
 	},
 
 	"require-dev": {
